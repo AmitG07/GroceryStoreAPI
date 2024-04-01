@@ -14,7 +14,7 @@ namespace GroceryStoreAPI.Data
     }
     public DbSet<ProductModel> Products { get; set; }
     public DbSet<CartModel> Carts { get; set; }
-    public DbSet<UserModel> Users { get; set; }
+    public DbSet<UserModel> UsersData { get; set; }
     public DbSet<AdminModel> Admins { get; set; }
     public DbSet<OrderModel> Orders { get; set; }
   }

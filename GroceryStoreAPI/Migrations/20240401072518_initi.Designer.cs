@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroceryStoreAPI.Migrations
 {
     [DbContext(typeof(GroceryDbContext))]
-    [Migration("20230619152353_initial")]
-    partial class initial
+    [Migration("20240401072518_initi")]
+    partial class initi
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -176,7 +176,7 @@ namespace GroceryStoreAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("UsersData");
                 });
 #pragma warning restore 612, 618
         }

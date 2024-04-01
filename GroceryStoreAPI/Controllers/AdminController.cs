@@ -20,19 +20,19 @@ namespace GroceryStoreAPI.Controllers
     }
 
 
-    [HttpGet("admin-login")]
-    public async Task<ActionResult<AdminModel>> AdminLogin(string email, string password)
+    [HttpPost("admin-login")]
+    public async Task<ActionResult<AdminModel>> AdminLogin([FromBody] AdminLoginModel loginModel)
     {
-      var allAdmins = await _groceryDbContext.Admins.ToListAsync();
-      var currentAdmin = allAdmins.FirstOrDefault(i => i.Email == email && i.Password == password);
-      if (currentAdmin == null)
-      {
-        NotFound("Admin does not exit");
-      }
-      return Ok(currentAdmin);
+        var allAdmins = await _groceryDbContext.Admins.ToListAsync();
+        var currentAdmin = allAdmins.FirstOrDefault(i => i.Email == loginModel.Email && i.Password == loginModel.Password);
+        if (currentAdmin == null)
+        {
+            return NotFound("Admin does not exist");
+        }
+        return Ok(currentAdmin);
     }
 
-    [HttpPost("admin-signup")]
+        [HttpPost("admin-signup")]
     public async Task<ActionResult<AdminModel>> AdminSignUp(AdminModel adminData)
     {
       var admins = await _groceryDbContext.Admins.ToListAsync();

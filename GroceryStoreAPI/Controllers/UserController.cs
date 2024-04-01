@@ -21,7 +21,7 @@ namespace GroceryStoreAPI.Controllers
     [HttpGet("user-login")]
     public async Task<ActionResult<UserModel>> UserLogin(string email, string password)
     {
-      var allUsers = await _groceryDbContext.Users.ToListAsync();
+      var allUsers = await _groceryDbContext.UsersData.ToListAsync();
       var currentUser = allUsers.FirstOrDefault(i => i.Email == email && i.Password == password);
       if (currentUser == null)
       {
@@ -33,14 +33,14 @@ namespace GroceryStoreAPI.Controllers
     [HttpPost("user-signup")]
     public async Task<ActionResult<AdminModel>> UserSignUp(UserModel userData)
     {
-      var  users=await _groceryDbContext.Users.ToListAsync();
+      var  users=await _groceryDbContext.UsersData.ToListAsync();
       if (users == null)
       {
         return BadRequest("Users are not present");
       }
-      _groceryDbContext.Users.Add(userData);
+      _groceryDbContext.UsersData.Add(userData);
       await _groceryDbContext.SaveChangesAsync();
-      var currUser = await _groceryDbContext.Users.FindAsync(userData.Id);
+      var currUser = await _groceryDbContext.UsersData.FindAsync(userData.Id);
       return Ok(currUser);
     }
   }
